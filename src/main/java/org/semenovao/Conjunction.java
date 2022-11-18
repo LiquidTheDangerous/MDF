@@ -2,44 +2,41 @@ package org.semenovao;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-public class Line implements Iterable<VariableValue>,Cloneable,Comparable<Line> {
+public class Conjunction implements Iterable<VariableValue>,Cloneable,Comparable<Conjunction> {
     private ArrayList<VariableValue> line;
     private final boolean result;
 
-    public Line(Collection<? extends Boolean> lineValues, boolean result) {
+    public Conjunction(Collection<? extends Boolean> lineValues, boolean result) {
         this.line = lineValues.stream().map(VariableValue::fromBool)
                 .collect(Collectors.toCollection(ArrayList::new));
         this.result = result;
     }
-    public Line(boolean[] values, boolean result) {
+    public Conjunction(boolean[] values, boolean result) {
         this.result = result;
         this.line = new ArrayList<>(values.length);
-        for (boolean i: values) {
+        for (boolean i : values) {
             this.line.add(VariableValue.fromBool(i));
         }
     }
 
-    public int difference(Line other) throws IllegalArgumentException {
+    public int difference(Conjunction other) throws IllegalArgumentException {
         if (this.getVariablesCount() != other.getVariablesCount()){
             throw new IllegalArgumentException("lines must be the same length");
         }
-        int result = 0;
-        for (int i = 0; i < this.line.size(); ++i){
-          if(!(other.get(i).equals(this.get(i)))){
-              ++result;
-          }
-        }
-        return result;
+        return (int) IntStream
+                .range(0, this.line.size())
+                .filter(i -> !(other.get(i).equals(this.get(i))))
+                .count();
     }
 
-    public int findFirstDifference(Line other){
-        for (int i = 0; i < this.line.size(); ++i){
-          if(!(other.get(i).equals(this.get(i)))){
-             return i;
-          }
-        }
-        return -1;
+    public int findFirstDifference(Conjunction other){
+        return IntStream
+                .range(0, this.line.size())
+                .filter(i -> !(other.get(i).equals(this.get(i))))
+                .findFirst()
+                .orElse(-1);
     }
 
 
@@ -59,6 +56,17 @@ public class Line implements Iterable<VariableValue>,Cloneable,Comparable<Line> 
         return this.result;
     }
 
+    public boolean canAbsorb(Conjunction other){
+        if (other.line.size() != this.line.size()){
+            return false;
+        }
+
+        return IntStream
+                .range(0, this.line.size())
+                .filter(i -> this.line.get(i) != VariableValue.ANY)
+                .noneMatch(i -> this.line.get(i) != other.line.get(i));
+    }
+
     @Override
     public String toString(){
         StringBuilder stringResult = new StringBuilder(this.line.size()*2 + 16);
@@ -69,7 +77,6 @@ public class Line implements Iterable<VariableValue>,Cloneable,Comparable<Line> 
                 stringResult.append(", ");
             }
         }
-//        stringResult.append(String.join(",",this.line.stream().map(VariableValue::toString).collect(Collectors.toList())));
         stringResult.append('}');
         stringResult.append(String.format("(%d)",this.result?1:0));
         return stringResult.toString();
@@ -81,9 +88,9 @@ public class Line implements Iterable<VariableValue>,Cloneable,Comparable<Line> 
     }
 
     @Override
-    public Line clone() {
+    public Conjunction clone() {
         try {
-            Line clone = (Line) super.clone();
+            Conjunction clone = (Conjunction) super.clone();
             ArrayList<VariableValue> newValues = new ArrayList<>(this.line.size());
             newValues.addAll(this.line);
             clone.line = newValues;
@@ -94,7 +101,7 @@ public class Line implements Iterable<VariableValue>,Cloneable,Comparable<Line> 
     }
 
     @Override
-    public int compareTo(Line o) {
+    public int compareTo(Conjunction o) {
         if (o.line.size() != this.line.size()){
             return -1;
         }

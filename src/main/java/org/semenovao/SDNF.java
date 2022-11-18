@@ -7,9 +7,9 @@ import java.util.stream.Stream;
 
 public class SDNF
 {
-    ArrayList<Line> lines;
+    ArrayList<Conjunction> lines;
     private SDNF(){}
-    public SDNF(Collection<? extends Line> lines){
+    public SDNF(Collection<? extends Conjunction> lines){
         this.lines = new ArrayList<>(lines);
     }
     public SDNF(Boolean[] vector) {
@@ -31,13 +31,13 @@ public class SDNF
                 continue;
             }
             Boolean[] line = new Boolean[paramsCount];
-            int radx = 1;
+            int radix = 1;
             int c = 0;
-            while (radx < size){
-                line[c++] = (radx & i) != 0;
-                radx = radx << 1;
+            while (radix < size){
+                line[c++] = (radix & i) != 0;
+                radix = radix << 1;
             }
-            this.lines.add(new Line(List.of(line),true));
+            this.lines.add(new Conjunction(List.of(line),true));
         }
 
     }
@@ -60,7 +60,7 @@ public class SDNF
                 radx = radx << 1;
             }
             if (func.apply(line)){
-                this.lines.add(new Line(List.of(line),func.apply(line)));
+                this.lines.add(new Conjunction(List.of(line),true));
             }
         }
     }
@@ -92,7 +92,7 @@ public class SDNF
                 var diff = lineFirst.difference(lineSecond);
                 if (diff == 1){
                     int index = lineFirst.findFirstDifference(lineSecond);
-                    Line l = lineFirst.clone();
+                    Conjunction l = lineFirst.clone();
                     l.set(index,VariableValue.ANY);
                     if (dnf.lines.stream().noneMatch(x-> x.difference(l) == 0)){
                         dnf.lines.add(l);
