@@ -39,7 +39,12 @@ public class SDNF
             }
             this.lines.add(new Conjunction(List.of(line),true));
         }
+    }
 
+    public ArrayList<Conjunction> getConjunctions(){
+      ArrayList<Conjunction> conjunctions = new ArrayList<>(this.lines.size());
+      conjunctions.addAll(this.lines);
+      return conjunctions;
     }
 
     public SDNF(IDiscreteFunction func, int paramsCount) throws  IllegalArgumentException {
