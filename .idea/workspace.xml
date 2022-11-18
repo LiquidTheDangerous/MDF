@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eec319b4-f9a6-4b8b-a1ee-c6ab6fc503eb" name="Changes" comment="Initial commit">
+    <list default="true" id="eec319b4-f9a6-4b8b-a1ee-c6ab6fc503eb" name="Changes" comment="add implicants from sdnf">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/semenovao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/semenovao/DNF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/DNF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/semenovao/DNF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/SDNF.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/semenovao/Line.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/Line.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +111,8 @@
       <updated>1668763093938</updated>
       <workItem from="1668763096576" duration="13136000" />
       <workItem from="1668786145020" duration="7959000" />
-      <workItem from="1668796798158" duration="3047000" />
+      <workItem from="1668796798158" duration="3115000" />
+      <workItem from="1668800210387" duration="4371000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1668797080454</created>
@@ -120,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668797080454</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add implicants from sdnf">
+      <created>1668799896608</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1668799896608</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,9 +147,19 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="add implicants from sdnf" />
+    <option name="LAST_COMMIT_MESSAGE" value="add implicants from sdnf" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/semenovao/Line.java</url>
+          <line>97</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="dnf.lines.get(0)" />

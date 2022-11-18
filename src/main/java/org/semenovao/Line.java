@@ -3,7 +3,7 @@ package org.semenovao;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Line implements Iterable<VariableValue>,Cloneable {
+public class Line implements Iterable<VariableValue>,Cloneable,Comparable<Line> {
     private ArrayList<VariableValue> line;
     private final boolean result;
 
@@ -63,8 +63,13 @@ public class Line implements Iterable<VariableValue>,Cloneable {
     public String toString(){
         StringBuilder stringResult = new StringBuilder(this.line.size()*2 + 16);
         stringResult.append('{');
-
-        stringResult.append(String.join(",",this.line.stream().map(VariableValue::toString).collect(Collectors.toList())));
+        for (int i = 0; i < this.line.size(); ++i){
+            stringResult.append(this.line.get(this.line.size() - i - 1));
+            if (i != this.line.size() - 1){
+                stringResult.append(", ");
+            }
+        }
+//        stringResult.append(String.join(",",this.line.stream().map(VariableValue::toString).collect(Collectors.toList())));
         stringResult.append('}');
         stringResult.append(String.format("(%d)",this.result?1:0));
         return stringResult.toString();
@@ -86,5 +91,17 @@ public class Line implements Iterable<VariableValue>,Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }
+    }
+
+    @Override
+    public int compareTo(Line o) {
+        if (o.line.size() != this.line.size()){
+            return -1;
+        }
+        int result = 0;
+        for (int i = 0;i < this.line.size(); ++i){
+            result += this.line.get(i).ordinal() - o.line.get(i).ordinal();
+        }
+        return result;
     }
 }
