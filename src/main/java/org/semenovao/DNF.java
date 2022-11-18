@@ -7,6 +7,7 @@ import java.util.List;
 public class DNF
 {
     ArrayList<Line> lines;
+    private DNF(){};
     public DNF(Collection<? extends Line> lines){
         this.lines = new ArrayList<>(lines);
     }
@@ -28,9 +29,33 @@ public class DNF
                 line[c++] = (radx & i) != 0;
                 radx = radx << 1;
             }
-
-            this.lines.add(new Line(List.of(line),func.apply(line)));
+            if (func.apply(line)){
+                this.lines.add(new Line(List.of(line),func.apply(line)));
+            }
         }
+    }
+
+    DNF getImplicants(){
+        DNF dnf = new DNF();
+        dnf.lines = new ArrayList<>(this.lines.size());
+
+        for (int i = 0; i < this.lines.size() - 1;++i){
+            ArrayList<Line> lines = new ArrayList<>(this.size());
+            for (int j = i + 1; j < this.lines.size(); ++j){
+                var lineFirst = this.lines.get(i);
+
+                var lineSecond = this.lines.get(j);
+
+                var diff = lineFirst.difference(lineSecond);
+                if (diff == 1){
+                    int index = lineFirst.findFirstDifference(lineSecond);
+                    Line l = lineFirst.clone();
+                    l.set(index,VariableValue.ANY);
+                    dnf.lines.add(l);
+                }
+            }
+        }
+        return dnf;
     }
 
     public int size(){

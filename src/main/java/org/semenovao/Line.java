@@ -3,8 +3,8 @@ package org.semenovao;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Line implements Iterable<VariableValue> {
-    private final ArrayList<VariableValue> line;
+public class Line implements Iterable<VariableValue>,Cloneable {
+    private ArrayList<VariableValue> line;
     private final boolean result;
 
     public Line(Collection<? extends Boolean> lineValues, boolean result) {
@@ -33,9 +33,22 @@ public class Line implements Iterable<VariableValue> {
         return result;
     }
 
+    public int findFirstDifference(Line other){
+        for (int i = 0; i < this.line.size(); ++i){
+          if(!(other.get(i).equals(this.get(i)))){
+             return i;
+          }
+        }
+        return -1;
+    }
+
 
     public VariableValue get(int index) throws IndexOutOfBoundsException{
         return this.line.get(index);
+    }
+
+    public void set(int index, VariableValue value){
+        this.line.set(index,value);
     }
 
     public int getVariablesCount(){
@@ -60,5 +73,18 @@ public class Line implements Iterable<VariableValue> {
     @Override
     public Iterator<VariableValue> iterator() {
         return this.line.iterator();
+    }
+
+    @Override
+    public Line clone() {
+        try {
+            Line clone = (Line) super.clone();
+            ArrayList<VariableValue> newValues = new ArrayList<>(this.line.size());
+            newValues.addAll(this.line);
+            clone.line = newValues;
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
