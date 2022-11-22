@@ -31,6 +31,12 @@ public class Conjunction implements Iterable<VariableValue>,Cloneable,Comparable
                 .count();
     }
 
+    public int getSize(){
+        return (int) this.line.stream()
+                .filter(variableValue -> variableValue != VariableValue.ANY)
+                .count();
+    }
+
     public int findFirstDifference(Conjunction other){
         return IntStream
                 .range(0, this.line.size())
@@ -39,6 +45,16 @@ public class Conjunction implements Iterable<VariableValue>,Cloneable,Comparable
                 .orElse(-1);
     }
 
+    String boundWithVariables(String... vars){
+        StringBuilder string = new StringBuilder(this.line.size()*2);
+        for (int i = 0; i < this.line.size(); ++i){
+            switch (this.line.get(this.line.size() - i - 1)){
+                case ONE -> string.append(vars[i]);
+                case ZERO -> string.append(String.format("!%s",vars[i]));
+            }
+        }
+        return string.toString();
+    }
 
     public VariableValue get(int index) throws IndexOutOfBoundsException{
         return this.line.get(index);
@@ -78,7 +94,6 @@ public class Conjunction implements Iterable<VariableValue>,Cloneable,Comparable
             }
         }
         stringResult.append('}');
-        stringResult.append(String.format("(%d)",this.result?1:0));
         return stringResult.toString();
     }
 

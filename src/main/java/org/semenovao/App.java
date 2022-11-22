@@ -1,18 +1,28 @@
 package org.semenovao;
-//import org.nfunk.jep.*;
 
 
-public class App 
+import org.nfunk.jep.ParseException;
+import java.util.Scanner;
+
+public class App
 {
 
-    public static void main( String[] args ) {
-//        System.out.println(31 - Integer.numberOfLeadingZeros(5));
-//        IDiscreteFunction f = p ->  (!p[0]&&!p[1])||(p[0]&&p[2]||!p[0]&&!p[2]);
-        SDNF dnf = new SDNF(new Boolean[]{true,true,false,true,true,true,false,false});
-        ImplicantMatrix matrix = new ImplicantMatrix(dnf.getConjunctions(),dnf.getImplicants().getConjunctions());
-        System.out.println(matrix.canCoverage(new int[]{5,5}));
-        //        var d = dnf.getImplicants();
-//        System.out.println(16 & (16 - 1));
-        //        System.out.println(3 & 1<<0);
+    public static void main( String[] args ) throws ParseException {
+        VectorExpressionHelper expressionHelper = new VectorExpressionHelper();
+        System.out.println("Expression");
+        Scanner scanner = new Scanner(System.in);
+        String str = scanner.nextLine();
+        expressionHelper.setExpression(str);
+        var vector = expressionHelper.getVectorFromExpression();
+        var variables = expressionHelper.getVariables();
+        SDNF sdnf = new SDNF(vector);
+        ImplicantMatrix matrix = new ImplicantMatrix(sdnf.getConjunctions(),sdnf.getImplicants().getConjunctions());
+
+        System.out.println(matrix.toStringBoundArgs(variables.toArray(new String[0])));
+
+        var res = matrix.findShortestVariant();
+        System.out.println(VectorExpressionHelper.getBoundingStringFromConjunctions(res,variables));
+
+        //        System.out.println(matrix.toStringBoundArgs(String.valueOf(variables.stream().map(x->x.toString()))));
     }
 }
