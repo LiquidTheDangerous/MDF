@@ -86,6 +86,15 @@ public class VectorExpressionHelper
             if (second instanceof Boolean && first instanceof Boolean){
                 stack.push( !(Boolean) first || (Boolean) second);
             }
+            if (second instanceof Double && first instanceof Boolean){
+                stack.push( !(Boolean) first || (Double) second != 0.0);
+            }
+            if (second instanceof Boolean && first instanceof Double){
+                stack.push((Double) first == 0 || (Boolean) second);
+            }
+            if (second instanceof Double && first instanceof Double){
+                stack.push( (Double) first == 0|| (Double) second != 0.0);
+            }
 //            return false;
         }
     }

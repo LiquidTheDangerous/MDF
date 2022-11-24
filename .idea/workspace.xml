@@ -9,20 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eec319b4-f9a6-4b8b-a1ee-c6ab6fc503eb" name="Changes" comment="add ExpressionHelper.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/ImplicantMatrixIterator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/SubSetIterator.java" afterDir="false" />
+    <list default="true" id="eec319b4-f9a6-4b8b-a1ee-c6ab6fc503eb" name="Changes" comment="Bug fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/semenovao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/semenovao/Conjunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/Conjunction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/semenovao/ImplicantMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/ImplicantMatrix.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/semenovao/SDNF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/SDNF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/semenovao/VariableValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/VariableValue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/semenovao/VectorExpressionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/VectorExpressionHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/semenovao/TestImplicantMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/semenovao/TestImplicantMatrix.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/semenovao/TestIterator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/semenovao/TestIterator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/semenovao/TestVectorExpressionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/semenovao/TestVectorExpressionHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +61,7 @@
       <recent name="org.semenovao" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestImplicantMatrix.testApp">
+  <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.semenovao.App" />
       <module name="discreteMathLab2" />
@@ -163,9 +155,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.App" />
         <item itemvalue="JUnit.TestImplicantMatrix.testApp" />
         <item itemvalue="JUnit.TestIterator.testApp" />
-        <item itemvalue="Application.App" />
         <item itemvalue="JUnit.TestVectorExpressionHelper.testApp" />
       </list>
     </recent_temporary>
@@ -188,7 +180,8 @@
       <workItem from="1669188617347" duration="5894000" />
       <workItem from="1669196788000" duration="456000" />
       <workItem from="1669222127888" duration="3491000" />
-      <workItem from="1669286118757" duration="3069000" />
+      <workItem from="1669286118757" duration="4056000" />
+      <workItem from="1669316356376" duration="3998000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1668797080454</created>
@@ -232,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669146435054</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Bug fixes">
+      <created>1669289411841</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1669289411841</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,9 +256,19 @@
     <MESSAGE value="for loops replaced to StreamAPI" />
     <MESSAGE value="add ImplicantMatrix." />
     <MESSAGE value="add ExpressionHelper." />
-    <option name="LAST_COMMIT_MESSAGE" value="add ExpressionHelper." />
+    <MESSAGE value="Bug fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/semenovao/VectorExpressionHelper.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="bitMask" />

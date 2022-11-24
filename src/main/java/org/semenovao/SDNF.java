@@ -91,14 +91,17 @@ public class SDNF
     }
 
     public SDNF getImplicants() {
-        SDNF result = new SDNF();
-        result.lines = new ArrayList<>(this.lines.size()*4);
+
+        SDNF sdnf = new SDNF();
+        sdnf.lines = new ArrayList<>(this.lines);
+
+        sdnf.lines = new ArrayList<>(this.lines.size()*4);
         SDNF next = this.getNextImplicants();
         do {
-            result.extend(next);
+            sdnf.extend(next);
             next = next.getNextImplicants();
         } while (next.lines.size() != 0);
-        return result;
+        return sdnf;
     }
     SDNF getNextImplicants(){
         SDNF dnf = new SDNF();

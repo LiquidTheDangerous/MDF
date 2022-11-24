@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 import de.vandermeer.asciitable.*;
 import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 
-public class ImplicantMatrix {
+public class ImplicantMatrix implements Iterable<ArrayList<Conjunction>>{
     List<Conjunction> conjunctions;
     List<Conjunction> implicants;
 
@@ -26,6 +26,9 @@ public class ImplicantMatrix {
         }
 
         this.initializeAbortions();
+
+//        for(int j = 0; j < this.implicants.size();++j)
+
     }
 
     public boolean get(int i, int j){
@@ -168,4 +171,8 @@ public class ImplicantMatrix {
         return at.render();
     }
 
+    @Override
+    public Iterator<ArrayList<Conjunction>> iterator() {
+        return new ImplicantMatrixIterator(this);
+    }
 }
