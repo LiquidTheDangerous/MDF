@@ -19,8 +19,8 @@ public class VectorExpressionHelper
         this.jep.setAllowUndeclared(true);
     }
     public Boolean[] getVectorFromExpression() throws ParseException {
-        var keys = new ArrayList(jep.getSymbolTable().keySet());
-        for (var k : keys){
+        ArrayList keys = new ArrayList(jep.getSymbolTable().keySet());
+        for (Object k : keys){
             this.jep.removeVariable(k.toString());
         }
 
@@ -42,7 +42,7 @@ public class VectorExpressionHelper
             for (int i = 0; i < bitMask.size();++i){
                 jep.setVarValue(variables.get(i).toString(),bitMask.get(bitMask.size() - i - 1));
             }
-            var eval_res = jep.evaluate(jep.parse(expression));
+            Object eval_res = jep.evaluate(jep.parse(expression));
             if (eval_res instanceof Boolean){
                 result[c++] = (Boolean) eval_res;
             }
@@ -62,9 +62,14 @@ public class VectorExpressionHelper
         return this.variables;
     }
 
-    static String getBoundingStringFromConjunctions(Collection<? extends Conjunction> conjunctions, Collection<? extends String> variables){
+    public static String getBoundingStringFromConjunctions(Collection<? extends Conjunction> conjunctions, Collection<? extends String> variables){
         String[] v = variables.toArray(new String[0]);
-        return String.join("||",conjunctions.stream().map(x->x.boundWithVariables(v)).toList());
+        List<String> list = new LinkedList<>();
+        for (Conjunction x : conjunctions) {
+            String s = x.boundWithVariables(v);
+            list.add(s);
+        }
+        return String.join("||", list);
     }
 
     static class LessOrEqual extends PostfixMathCommand {

@@ -47,9 +47,9 @@ public class ImplicantMatrix {
     }
     private void initializeAbortions(){
         for (int i = 0; i < this.absorptions.size();++i){
-            var implicant = this.implicants.get(i);
+            Conjunction implicant = this.implicants.get(i);
             for(int j = 0; j < this.absorptions.get(0).size();++j){
-                var conjunct = this.conjunctions.get(j);
+                Conjunction conjunct = this.conjunctions.get(j);
                 if (implicant.canAbsorb(conjunct)){
                     this.absorptions.get(i).set(j,true);
                 }
@@ -58,7 +58,7 @@ public class ImplicantMatrix {
     }
 
     ArrayList<Integer> findKernel(){
-        ArrayList<Integer> lst = new ArrayList<>(this.implicants.size());
+        Set<Integer> lst = new HashSet<>(this.implicants.size());
         for (int j = 0; j < this.conjunctions.size();++j){
             int countTrue = 0;
             int  idx = -1;
@@ -72,13 +72,13 @@ public class ImplicantMatrix {
                 lst.add(idx);
             }
         }
-        return lst;
+        return new ArrayList<>(lst);
     }
 
     public ArrayList<ArrayList<Conjunction>> findVariants(){
         ArrayList<ArrayList<Conjunction>> res = new ArrayList<>();
 
-        var kern = this.findKernel();
+        ArrayList<Integer> kern = this.findKernel();
         ArrayList<Integer> impl = new ArrayList<>(this.implicants.size());
         for (int i = 0; i < this.implicants.size();++i){
             if (!kern.contains(i)){
@@ -88,7 +88,7 @@ public class ImplicantMatrix {
 
         MaskSetIterator iter = new MaskSetIterator(impl.size());
         while (iter.hasNext()){
-            var variant = iter.next();
+            ArrayList<Boolean> variant = iter.next();
             List<Integer> lst = new LinkedList<>();
             for (int i = 0; i < variant.size();++i){
                 if (variant.get(i)){
@@ -108,12 +108,13 @@ public class ImplicantMatrix {
     }
 
     public ArrayList<Conjunction> findShortestVariant(){
-        var variants = this.findVariants();
+        ArrayList<ArrayList<Conjunction>> variants = this.findVariants();
 
         ArrayList<Conjunction> result = null;
+//        List<Conjunction> results
         int record = Integer.MAX_VALUE;
-        for (var variant : variants){
-            var size = variant.stream().mapToInt(Conjunction::getSize).sum();
+        for (ArrayList<Conjunction> variant : variants){
+            int size = variant.stream().mapToInt(Conjunction::getSize).sum();
             if (size < record){
                 record = size;
                 result = variant;
@@ -127,14 +128,19 @@ public class ImplicantMatrix {
         AsciiTable at = new AsciiTable();
         List<Object> list = new LinkedList<>();
         list.add(" ");
-        list.addAll(List.of(this.conjunctions.stream().map(x->x.boundWithVariables(vars)).toArray()));
+        list.addAll(Arrays.asList(this.conjunctions.stream().map(x->x.boundWithVariables(vars)).toArray()));
         at.addRow(list).setTextAlignment(TextAlignment.CENTER);
         at.addRule();
 
         for (int i = 0; i < this.absorptions.size();++i){
             List<Object> lst = new LinkedList<>();
             lst.add(this.implicants.get(i).boundWithVariables(vars));
-            lst.addAll(this.absorptions.get(i).stream().map(x -> x ? "+" : " ").toList());
+            List<String> result = new LinkedList<>();
+            for (Boolean x : this.absorptions.get(i)) {
+                String s = x ? "+" : " ";
+                result.add(s);
+            }
+            lst.addAll(result);
             at.addRow(lst).setTextAlignment(TextAlignment.CENTER);
             at.addRule();
         }
@@ -147,7 +153,7 @@ public class ImplicantMatrix {
         AsciiTable at = new AsciiTable();
         List<Object> list = new LinkedList<>();
         list.add(" ");
-        list.addAll(List.of(this.conjunctions.stream().map(Conjunction::toString).toArray()));
+        list.addAll(Arrays.asList(this.conjunctions.stream().map(Conjunction::toString).toArray()));
         at.addRow(list).setTextAlignment(TextAlignment.CENTER);
         at.addRule();
 

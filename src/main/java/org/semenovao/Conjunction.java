@@ -49,8 +49,12 @@ public class Conjunction implements Iterable<VariableValue>,Cloneable,Comparable
         StringBuilder string = new StringBuilder(this.line.size()*2);
         for (int i = 0; i < this.line.size(); ++i){
             switch (this.line.get(this.line.size() - i - 1)){
-                case ONE -> string.append(vars[i]);
-                case ZERO -> string.append(String.format("!%s",vars[i]));
+                case ONE:
+                    string.append(vars[i]);
+                    break;
+                case ZERO:
+                    string.append(String.format("!%s",vars[i]));
+                    break;
             }
         }
         return string.toString();

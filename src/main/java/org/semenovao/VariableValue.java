@@ -13,9 +13,9 @@ public enum VariableValue
     public String toString(){
         String result = "";
         switch (this){
-            case ANY -> result = "*";
-            case ZERO -> result = "0";
-            case ONE -> result = "1";
+            case ANY:   result = "*"; break;
+            case ZERO:  result = "0"; break;
+            case ONE:   result = "1"; break;
         }
         return result;
     }

@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="discreteMathLab2:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eec319b4-f9a6-4b8b-a1ee-c6ab6fc503eb" name="Changes" comment="add ExpressionHelper.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/MaskSetIterator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/VectorExpressionHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/semenovao/TestImplicantMatrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/semenovao/TestVectorExpressionHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/ImplicantMatrixIterator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/SubSetIterator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/semenovao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/semenovao/Conjunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/Conjunction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/semenovao/ImplicantMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/ImplicantMatrix.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/semenovao/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/semenovao/TestIterator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/semenovao/SDNF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/SDNF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/semenovao/VariableValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/VariableValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/semenovao/VectorExpressionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/semenovao/VectorExpressionHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/semenovao/TestImplicantMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/semenovao/TestImplicantMatrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/semenovao/TestIterator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/semenovao/TestIterator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/semenovao/TestVectorExpressionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/semenovao/TestVectorExpressionHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,11 +56,12 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.4827586&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -60,7 +69,7 @@
       <recent name="org.semenovao" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="JUnit.TestImplicantMatrix.testApp">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.semenovao.App" />
       <module name="discreteMathLab2" />
@@ -154,10 +163,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.App" />
-        <item itemvalue="JUnit.TestVectorExpressionHelper.testApp" />
         <item itemvalue="JUnit.TestImplicantMatrix.testApp" />
         <item itemvalue="JUnit.TestIterator.testApp" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="JUnit.TestVectorExpressionHelper.testApp" />
       </list>
     </recent_temporary>
   </component>
@@ -175,7 +184,11 @@
       <workItem from="1668800210387" duration="7103000" />
       <workItem from="1668810278679" duration="3976000" />
       <workItem from="1669105860887" duration="8356000" />
-      <workItem from="1669129670680" duration="14458000" />
+      <workItem from="1669129670680" duration="14637000" />
+      <workItem from="1669188617347" duration="5894000" />
+      <workItem from="1669196788000" duration="456000" />
+      <workItem from="1669222127888" duration="3491000" />
+      <workItem from="1669286118757" duration="3069000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1668797080454</created>
@@ -212,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668814199922</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add ExpressionHelper.">
+      <created>1669146435054</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669146435054</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,6 +264,7 @@
         <watch expression="bitMask" />
         <watch expression="variables" />
         <watch expression="eval_res" />
+        <watch expression="matrixxxx" />
       </configuration>
       <configuration name="Application">
         <watch expression="dnf.lines.get(0)" />

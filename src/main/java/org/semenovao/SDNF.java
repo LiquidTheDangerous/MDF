@@ -1,8 +1,8 @@
 package org.semenovao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Stream;
 
 public class SDNF
@@ -14,7 +14,7 @@ public class SDNF
     }
     public SDNF(Boolean[] vector) {
         int size = vector.length;
-        var capacity = Stream
+        long capacity = Stream
                 .of(vector)
                 .filter(
                         x -> x
@@ -37,7 +37,7 @@ public class SDNF
                 line[c++] = (radix & i) != 0;
                 radix = radix << 1;
             }
-            this.lines.add(new Conjunction(List.of(line),true));
+            this.lines.add(new Conjunction(Arrays.asList(line),true));
         }
     }
 
@@ -65,13 +65,29 @@ public class SDNF
                 radx = radx << 1;
             }
             if (func.apply(line)){
-                this.lines.add(new Conjunction(List.of(line),true));
+                this.lines.add(new Conjunction(Arrays.asList(line),true));
             }
         }
     }
 
-    void extend(SDNF dnf){
-        this.lines.addAll(dnf.lines);
+    void extend(SDNF dnf) {
+        ArrayList<Conjunction> res = new ArrayList<>(dnf.lines.size());
+        res.addAll(dnf.lines);
+
+        for (Conjunction i : this.lines){
+            boolean flag = false;
+            for (Conjunction j : res){
+                if (j.canAbsorb(i)){
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag){
+                res.add(i);
+            }
+        }
+        this.lines = res;
+//        this.lines.addAll(dnf.lines);
     }
 
     public SDNF getImplicants() {
@@ -90,11 +106,11 @@ public class SDNF
 
         for (int i = 0; i < this.lines.size() - 1;++i){
             for (int j = i + 1; j < this.lines.size(); ++j){
-                var lineFirst = this.lines.get(i);
+                Conjunction lineFirst = this.lines.get(i);
 
-                var lineSecond = this.lines.get(j);
+                Conjunction lineSecond = this.lines.get(j);
 
-                var diff = lineFirst.difference(lineSecond);
+                int diff = lineFirst.difference(lineSecond);
                 if (diff == 1){
                     int index = lineFirst.findFirstDifference(lineSecond);
                     Conjunction l = lineFirst.clone();
